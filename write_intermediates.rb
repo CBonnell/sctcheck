@@ -47,7 +47,7 @@ CSV.foreach($in, :encoding => 'UTF-8').with_index do |row, lineno|
     der = Base64.decode64 pem
     cert = OpenSSL::X509::Certificate.new der
 
-    cert_fingerprint = Digest::SHA2.hexdigest cert.to_der
+    cert_fingerprint = Digest::SHA1.hexdigest cert.to_der
 
     dest_file = File.join $out_dir, "#{cert_fingerprint}.der"
     puts "Issuer \"#{cert.subject.to_s}\" with fingerprint #{cert_fingerprint} " +

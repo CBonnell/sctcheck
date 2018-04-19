@@ -53,7 +53,7 @@ module SctCheck
             @logger.debug "#{matching_issuers_by_dn.length} issuer(s) match by DN"
             matching_issuers_by_dn.each {|i| @logger.debug "#{i.subject.to_s}"}
 
-            @issuers.find do |issuer|
+            matching_issuers_by_dn.find do |issuer|
                 begin
                     cert.verify issuer.public_key
                 rescue OpenSSL::X509::CertificateError
